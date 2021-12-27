@@ -14,16 +14,16 @@ def isequal(a, b, start):
 def hash_of_b(b):
     h = 0
     for i in b:
-        h = (((h ) * basenum) + ord(i)) % prime
+        h = (((h + prime) * basenum) + ord(i)) % prime
     return (h + prime) % prime
 
 def hash_of_a(a):
     h = 0
     i = 0
     while i < k:
-        h = (((h) * basenum) + ord(a[decode(i)]))% prime
+        h = (((h + prime) * basenum) + ord(a[decode(i)]))% prime
         i += 1
-    return h
+    return (h + prime) % prime
 
 def offsetof(k):
     k = k - 1
@@ -40,7 +40,7 @@ def stringmatch(a,b):
     global k; k = len(b)    # These are global variables
     global n; n = len(a)
     global prime; prime = 101 # prime for hashing,
-    global basenum; basenum = 256
+    global basenum; basenum = 128
     global offset; offset = offsetof(k)  # This is the offset bits for hash function
     bhash = hash_of_b(b)
     h = hash_of_a(a)
