@@ -42,11 +42,11 @@ def stringmatch(a,b):
     global prime; prime = 101       # prime for hashing,
     global basenum; basenum = 128   # primes
     global offset; offset = offset_of(k)  # This is the offset bits for hash function
-    bhash = hash_of_b(b)
-    h = hash_of_a(a)
+    hash_b = hash_of_b(b)
+    rolling_hash = hash_of_a(a)
 
     for i in range(n):
-        if h == bhash and is_equal(a, b, i):
+        if rolling_hash == hash_b and is_equal(a, b, i):
                 return math.ceil((i + k) / n)
-        h = rhash(h, a[decode(i)], a[decode(i + k)])
+        rolling_hash = rhash(rolling_hash, a[decode(i)], a[decode(i + k)])
     return -1
