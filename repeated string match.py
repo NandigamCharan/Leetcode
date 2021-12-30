@@ -3,7 +3,7 @@ import math
 def decode(i):
     return i % n
 
-def isequal(a, b, start):
+def is_equal(a, b, start):
     j = start
     for i in range(0, k):
         if a[decode(j)] != b[i]:
@@ -25,7 +25,7 @@ def hash_of_a(a):
         i += 1
     return (h + prime) % prime
 
-def offsetof(k):
+def offset_of(k):
     k = k - 1
     off = 1
     for i in range(k):
@@ -37,16 +37,16 @@ def rhash(h, old, new):
 
 def stringmatch(a,b):
 
-    global k; k = len(b)    # These are global variables
+    global k; k = len(b)            # These are global variables
     global n; n = len(a)
-    global prime; prime = 101 # prime for hashing,
-    global basenum; basenum = 128
-    global offset; offset = offsetof(k)  # This is the offset bits for hash function
+    global prime; prime = 101       # prime for hashing,
+    global basenum; basenum = 128   # primes
+    global offset; offset = offset_of(k)  # This is the offset bits for hash function
     bhash = hash_of_b(b)
     h = hash_of_a(a)
 
     for i in range(n):
-        if h == bhash and isequal(a, b, i):
+        if h == bhash and is_equal(a, b, i):
                 return math.ceil((i + k) / n)
         h = rhash(h, a[decode(i)], a[decode(i + k)])
     return -1
