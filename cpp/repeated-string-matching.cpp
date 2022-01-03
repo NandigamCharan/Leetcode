@@ -1,3 +1,10 @@
+/*
+Why it is failing?
+
+Theory: in rhash, integer overflow is happening...
+*/
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -50,7 +57,7 @@ int offset_of(int k) {
 }
 
 int rhash(int h, char old, char newer) {
-    return ((h + prime - (int)(old) * offset) * base + (int)newer) % prime;
+    return ((h + prime - ((int)old) * offset) * base + (int)newer) % prime;
 };
 
 int repeatedStringMatch(string a, string b) {

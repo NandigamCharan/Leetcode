@@ -49,7 +49,7 @@ int repeatedStringMatch(string a, string b) {
     for (int i = 0; i < n; i++) {
         cout << rolling_sum << "\n";
         if (rolling_sum == sum_b && is_equal(a, b, i)) {
-            return ceil((float)((i + k) / n));
+            return ceil((float)(i + k) / (float)n);
         }
         rolling_sum = rsum(rolling_sum, a[decode(i, n)], a[decode(i + k, n)]);
     }
